@@ -117,56 +117,56 @@ export const postData = async (req, res) => {
 //     res.json({ m: err.message });
 //   }
 // };
-export const voter = async (req, res) => {
-  try {
-    const collection = mongoose.connection.db.collection('voterdatas');
+// export const voter = async (req, res) => {
+//   try {
+//     const collection = mongoose.connection.db.collection('voterdatas');
 
-    // Set the response headers for streaming
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Transfer-Encoding', 'chunked');
+//     // Set the response headers for streaming
+//     res.setHeader('Content-Type', 'application/json');
+//     res.setHeader('Transfer-Encoding', 'chunked');
 
-    // Use a cursor to stream data
-    const cursor = collection.find({}).stream();
+//     // Use a cursor to stream data
+//     const cursor = collection.find({}).stream();
 
-    let isFirst = true;
+//     let isFirst = true;
 
-    res.write('['); // Start of the JSON array
+//     res.write('['); // Start of the JSON array
 
-    cursor.on('data', (doc) => {
-      if (!isFirst) {
-        res.write(',\n'); // Add a comma and newline separator for subsequent records
-      } else {
-        isFirst = false;
-      }
+//     cursor.on('data', (doc) => {
+//       if (!isFirst) {
+//         res.write(',\n'); // Add a comma and newline separator for subsequent records
+//       } else {
+//         isFirst = false;
+//       }
 
-      // Send each document as a separate JSON object
-      res.write(JSON.stringify({ m: doc }));
-    });
+//       // Send each document as a separate JSON object
+//       res.write(JSON.stringify({ m: doc }));
+//     });
 
-    cursor.on('end', () => {
-      res.write(']'); // End of the JSON array
-      res.end(); // End the response
-    });
+//     cursor.on('end', () => {
+//       res.write(']'); // End of the JSON array
+//       res.end(); // End the response
+//     });
 
-    cursor.on('error', (err) => {
-      console.error(err);
-      res.end(); // End the response in case of an error
-    });
-  } catch (err) {
-    console.error(err);
-    res.json({ error: 'An error occurred while streaming data.' });
-  }
-};
-export const vid=async(req,res)=>{
-  const collection = mongoose.connection.db.collection('voterdatas');
-try{
-  const datas=await collection.findOne({EPIC_NO:"YOJ8076895"})
-  res.json({m:datas})
-}
-catch(err){
-  res.json({m:err.message})
-}
-}
+//     cursor.on('error', (err) => {
+//       console.error(err);
+//       res.end(); // End the response in case of an error
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.json({ error: 'An error occurred while streaming data.' });
+//   }
+// };
+// export const vid=async(req,res)=>{
+//   const collection = mongoose.connection.db.collection('voterdatas');
+// try{
+//   const datas=await collection.findOne({EPIC_NO:"YOJ8076895"})
+//   res.json({m:datas})
+// }
+// catch(err){
+//   res.json({m:err.message})
+// }
+// }
 // export const name=async(req,res)=>{
 //   const{name,vid,partNo,age}=req.body
 //   const collection = mongoose.connection.db.collection('voterdatas');
@@ -223,7 +223,7 @@ catch(err){
 //   }
 // };
 export const data = async (req, res) => {
-  const {  vid, partNo,house } = req.body;
+  const {  vid, partNo,house } = req.query;
   const collection = mongoose.connection.db.collection('voterdatas');
 
   try {
