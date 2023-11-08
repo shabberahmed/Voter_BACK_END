@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --max-old-space-size=4096 server.js"
+    "start": "node --max-old-space-size=10000 server.js"
   },
   "keywords": [],
   "author": "",
