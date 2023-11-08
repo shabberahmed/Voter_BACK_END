@@ -236,7 +236,7 @@ export const data = async (req, res) => {
       query.EPIC_NO = vid;
     }
     if (partNo) {
-      query.PART_NO = partNo;
+      query.PART_NO = parseInt(partNo);
     }
     // if (age) {
     //   query.AGE = age;
