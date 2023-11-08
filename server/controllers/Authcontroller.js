@@ -1,5 +1,5 @@
 import AuthModel from "../models/AuthModel.js";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 const secretKey = 'your-secret-key';
 import  Jwt  from "jsonwebtoken";
 import UserModel from "../models/UserModel.js";
