@@ -56,7 +56,7 @@ try{
     let checkPassword=await bcrypt.compare(password,ifUser.password)
     if(checkPassword){
       const token=Jwt.sign({email},secretKey,{expiresIn:'10h'})
-      res.json({m:"ok",token:token,role:'user',id:ifUser.id,user:ifUser.name})
+      res.json({m:"ok",token:token,role:'user',id:ifUser.id,user:ifUser.name,oid:ifUser.oid})
     }
     else{
       res.json({m:"wrong password "})
@@ -88,6 +88,7 @@ export const formData = async (req, res) => {
     const users = await UserModel.find({ oid }).populate('oid');
     const responseData = users.map(user => {
       if (user.data.length > 0) {
+        console.log('ell')
         return user.data; // Assuming you only want the first data entry
       } else {
         return {}; // Return an empty object if there's no data

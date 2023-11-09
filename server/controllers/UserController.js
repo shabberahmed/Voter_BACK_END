@@ -86,6 +86,7 @@ export const postData = async (req, res) => {
     };
     // Find the user document by its unique email and update the 'data' field with the new data
     const user1 = await UserModel.findById(id);
+    console.log(user1)
     if (!user1) {
       return res.status(404).json({ error: 'User not found' });
     }
