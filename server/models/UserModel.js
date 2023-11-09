@@ -4,7 +4,8 @@ const data = new mongoose.Schema({
   name: String,
   vid: String,
   partno: String,
-  tel: String,
+  house: String,
+  user:String
 });
 
 const userSchema = new mongoose.Schema({

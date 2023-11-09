@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 import express from 'express'
 import Jwt from 'jsonwebtoken'
 const secretKey = 'your-secret-key';
-import cors from 'cors'
+// import cors from 'cors'
 
 
 export const userSignUp = async (req, res) => {
@@ -73,7 +73,8 @@ export const userSignIn = async (req, res) => {
 
 export const postData = async (req, res) => {
   try {
-    const { name, vid, partno, house,user } = req.body; // Destructure the data fields from the request body
+    // const {id}=req.params
+    const { name, vid, partno, house,user,id } = req.body; // Destructure the data fields from the request body
 
     // Create a new data object based on the schema
     const newData = {
@@ -82,7 +83,6 @@ export const postData = async (req, res) => {
       partno,
       house,
       user
-  
     };
     // Find the user document by its unique email and update the 'data' field with the new data
     const user1 = await UserModel.findById(id);
@@ -97,7 +97,7 @@ export const postData = async (req, res) => {
 
     res.json({ message: 'Data saved successfully' });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message ,m:"for eerr msms"});
   }
 };
 
