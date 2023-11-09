@@ -73,14 +73,14 @@ export const userSignIn = async (req, res) => {
 
 export const postData = async (req, res) => {
   try {
-    const { name, vid, partno, tel,user } = req.body; // Destructure the data fields from the request body
+    const { name, vid, partno, house,user } = req.body; // Destructure the data fields from the request body
 
     // Create a new data object based on the schema
     const newData = {
       name,
       vid,
       partno,
-      tel,
+      house,
       user
   
     };
